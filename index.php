@@ -1,6 +1,16 @@
 <?php 
+declare(strict_types=1);
 require './code/Post.php';
 require './code/Postloader.php';
+require './code/code.php';
+
+if(isset($_POST['submit'])){
+    try{
+        isEmpty();
+    }catch(Exception $e){
+        echo $e->getMessage();
+    }  
+}
 
 ?>
 <!DOCTYPE html>
@@ -19,10 +29,10 @@ require './code/Postloader.php';
 </div>
 <div style="text-align: center;" class="container">
     <form method="post">
-        <input type="text" placeholder="title">
-        <input type="text" placeholder="your name">
-        <input type="text" placeholder="Select Date"/>
-        <input type="text" placeholder="type your message here">
+        <input name="title" type="text" placeholder="title">
+        <input name="name" type="text" placeholder="your name">
+        <input name="date" type="text" placeholder="Select Date"/>
+        <input name="message" type="text" placeholder="type your message here">
         <button name="submit" class="btn btn-info">submit</button>
     </form>
 </div>

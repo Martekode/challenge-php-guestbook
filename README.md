@@ -73,3 +73,32 @@ class Post{
     
 }
 ```
+* ## created logic for button press
+```php
+if(isset($_POST['submit'])){
+    try{
+        isEmpty();
+    }catch(Exception $e){
+        echo $e->getMessage();
+    }  
+}
+```
+as you can see it has a function and some errir handing,
+let's show you that real quick 
+```php
+require './code/code.php';
+```
+new file
+```php
+declare(strict_types=1);
+
+function isEmpty(){
+    $keys=["title","name","message","author","date"];
+    foreach($keys as $key){
+        if($_POST[$key] == ''){
+            throw new Exception('empty '. $key.' input');
+        }
+    }
+}
+```
+keys array to exclude button from the empty check, and throwing an exception if there is something empty
