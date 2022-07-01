@@ -128,5 +128,36 @@ if(isset($_POST['submit'])){
      
 }
 ```
-$post= isEmpty is to get the returned object from isEmpty and put it in a variable.
- 
+improvements
+```php
+if(isset($_POST['submit'])){
+    try{
+       $post = isEmpty();
+       $postloader = new PostLoader();
+       #var_dump($post);
+       $postloader->savePost($post);
+    }catch(Exception $e){
+        echo $e->getMessage();
+    } 
+
+     
+}
+```
+this is the postloader class: 
+i had to pass everything individually bacause otherwise the ecoding was empty
+
+```php
+class Postloader{
+
+    public function savePost(POST $post){
+        $data=[];
+        $data['title']=$post->getTitle();
+        $data['date']=$post->getDate();
+        $data['message']=$post->getMessage();
+        $data['author']=$post->getAuthor();;
+        var_dump($data);
+        $dataJSON = json_encode($data);
+        file_put_contents('D:\WebPages\www\challenge-php-guestbook\db\db.txt',$dataJSON,FILE_APPEND);
+    }
+}
+```

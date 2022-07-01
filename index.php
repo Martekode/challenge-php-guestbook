@@ -7,10 +7,13 @@ require './code/code.php';
 if(isset($_POST['submit'])){
     try{
        $post = isEmpty();
-       var_dump($post);
+       $postloader = new PostLoader();
+       #var_dump($post);
+       $postloader->savePost($post);
     }catch(Exception $e){
         echo $e->getMessage();
     } 
+
      
 }
 
