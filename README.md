@@ -162,3 +162,10 @@ class Postloader{
     }
 }
 ```
+now its time to do fil_get_contents. we are going to place this indide the Postloader class. it will be a public function calles getPosts. after that we will let it display in the view on our page. And finally add some logic so it only displays 20 max.
+_________
+the beginning:
+```php
+    public function getPosts(){
+    }
+```

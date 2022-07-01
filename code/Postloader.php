@@ -11,4 +11,6 @@ class Postloader{
         $dataJSON = json_encode($data);
         file_put_contents('D:\WebPages\www\challenge-php-guestbook\db\db.txt',$dataJSON,FILE_APPEND);
     }
+    public function getPosts(){
+    }
 }
