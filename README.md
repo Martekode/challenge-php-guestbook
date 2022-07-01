@@ -83,7 +83,7 @@ if(isset($_POST['submit'])){
     }  
 }
 ```
-as you can see it has a function and some errir handing,
+as you can see it has a function and some error handing,
 let's show you that real quick 
 ```php
 require './code/code.php';
@@ -102,3 +102,31 @@ function isEmpty(){
 }
 ```
 keys array to exclude button from the empty check, and throwing an exception if there is something empty
+________
+if nothing is empty then we're going to make a new POST object and pass the $_POST data as parameters.
+```php
+function isEmpty():POST{
+    $keys=["title","name","message","date"];
+    foreach($keys as $key){
+        if($_POST[$key] == ''){
+            throw new Exception('empty '. $key.' input');
+        }  
+    }
+    $post = new Post($_POST['title'],$_POST['date'],$_POST['message'],$_POST['name']);
+    return $post;
+}
+```
+slight change in the button logic 
+```php
+if(isset($_POST['submit'])){
+    try{
+       $post = isEmpty();
+       var_dump($post);
+    }catch(Exception $e){
+        echo $e->getMessage();
+    } 
+     
+}
+```
+$post= isEmpty is to get the returned object from isEmpty and put it in a variable.
+ 

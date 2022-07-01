@@ -6,10 +6,12 @@ require './code/code.php';
 
 if(isset($_POST['submit'])){
     try{
-        isEmpty();
+       $post = isEmpty();
+       var_dump($post);
     }catch(Exception $e){
         echo $e->getMessage();
-    }  
+    } 
+     
 }
 
 ?>

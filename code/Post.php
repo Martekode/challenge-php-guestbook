@@ -1,14 +1,15 @@
 <?php class Post{
-    private $title;
-    private $date;
-    private $content;
-    private $author;
+    private string $title;
+    private string $date;
+    private string $message;
+    private string $author;
 
-    public function __construct($title, $date, $content, $author){
+    public function __construct($title, $date, $message, $author){
         $this->title = $title;
         $this->date = $date;
-        $this->content = $content;
+        $this->message = $message;
         $this->author = $author;
+        $this->isEmpty = false;
     }
     public function getTitle(){
         return $this->title;
@@ -16,11 +17,10 @@
     public function getDate(){
         return $this->date;
         }
-    public function getContent(){
-        return $this->content;
+    public function getMessage(){
+        return $this->message;
         }
     public function getAuthor(){
         return $this->author;
         }
-    
 }
