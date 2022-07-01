@@ -9,7 +9,6 @@
         $this->date = $date;
         $this->message = $message;
         $this->author = $author;
-        $this->isEmpty = false;
     }
     public function getTitle(){
         return $this->title;
