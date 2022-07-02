@@ -13,8 +13,8 @@ class Postloader{
         
         file_put_contents('D:\WebPages\www\challenge-php-guestbook\db\db.txt',$dataJSON);
     }
-    public function getPosts(){
+    public function getPosts():array{
         $stdPosts = json_decode(file_get_contents('D:\WebPages\www\challenge-php-guestbook\db\db.txt'));
-        var_dump($stdPosts);
+        return $stdPosts;
     }
 }

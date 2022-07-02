@@ -193,3 +193,28 @@ adding logic to getPosts
 
 ```
 for now a simple var_dump is enough.. after this we can work on the vieuw to display 20 posts maximum with  a for loop. It'll probablu works with a <?php for ($i=0;i<20;$i++): ?> and closing <?php endfor;>. maybe it doesn't but then ill just check how many there are first and display based on that. 
+___
+made it into a return
+```php
+    return $stdPosts;
+```
+some standard code to display it...
+```html, php
+<div class="container">
+    <div class="row">
+        <?php for ($i=0; $i < count($posts);$i++): ?>
+            <div class="col-sm-12 col-md-6 col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= $posts[$i]->{'title'}; ?></h5>
+                        <h6 class="card-subtitle mb-2 text-muted"><?= $posts[$i]->{'author'}; ?></h6>
+                        <h6 class="card-subtitle mb-2 text-muted"><?= $posts[$i]->{'date'}; ?></h6>
+                        <p class="card-text"><?= $posts[$i]->{'message'}; ?></p>
+                    </div>
+                </div>
+            </div>
+        <?php endfor;?>    
+    </div>
+</div>
+```
+![joe mama](./images/rmimg1.png)
