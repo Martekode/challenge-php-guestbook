@@ -217,4 +217,4 @@ some standard code to display it...
     </div>
 </div>
 ```
-![joe mama](./images/rmimg1.png)
+![joe mama](./images/rmimg2.png)
