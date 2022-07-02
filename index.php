@@ -10,6 +10,7 @@ if(isset($_POST['submit'])){
        $postloader = new PostLoader();
        #var_dump($post);
        $postloader->savePost($post);
+       $postloader->getPosts();
     }catch(Exception $e){
         echo $e->getMessage();
     } 

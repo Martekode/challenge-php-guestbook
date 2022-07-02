@@ -6,11 +6,15 @@ class Postloader{
         $data['title']=$post->getTitle();
         $data['date']=$post->getDate();
         $data['message']=$post->getMessage();
-        $data['author']=$post->getAuthor();;
-        var_dump($data);
-        $dataJSON = json_encode($data);
-        file_put_contents('D:\WebPages\www\challenge-php-guestbook\db\db.txt',$dataJSON,FILE_APPEND);
+        $data['author']=$post->getAuthor();
+        $currentFile = json_decode(file_get_contents('D:\WebPages\www\challenge-php-guestbook\db\db.txt'),true);
+        $currentFile[]= $data;
+        $dataJSON = json_encode($currentFile);
+        
+        file_put_contents('D:\WebPages\www\challenge-php-guestbook\db\db.txt',$dataJSON);
     }
     public function getPosts(){
+        $stdPosts = json_decode(file_get_contents('D:\WebPages\www\challenge-php-guestbook\db\db.txt'));
+        var_dump($stdPosts);
     }
 }

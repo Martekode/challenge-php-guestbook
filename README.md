@@ -156,11 +156,28 @@ class Postloader{
         $data['date']=$post->getDate();
         $data['message']=$post->getMessage();
         $data['author']=$post->getAuthor();;
-        var_dump($data);
+        #var_dump($data);
         $dataJSON = json_encode($data);
         file_put_contents('D:\WebPages\www\challenge-php-guestbook\db\db.txt',$dataJSON,FILE_APPEND);
     }
 }
+```
+changes needed to be made, sinds json_decode is very peculiar at decoding strings it proved very difficult to make this happen. Tim found a quick way tot do it by decoding the current file into an array and then pushing our data array allso in there before encoding it and putting it into the file.
+____
+I first didn't want to do it sinds it sounded and seemed like there were too many steps. I ended up searching the entire weekend for better solutions but always ended up with the NULL return because of a bad string. I tried utf8_encode,str_replace to always have "" dubble quotes but either way didn't work. So i ended up using tims method in my way.
+```php
+    public function savePost(POST $post){
+        $data=[];
+        $data['title']=$post->getTitle();
+        $data['date']=$post->getDate();
+        $data['message']=$post->getMessage();
+        $data['author']=$post->getAuthor();
+        $currentFile = json_decode(file_get_contents('D:\WebPages\www\challenge-php-guestbook\db\db.txt'),true);
+        $currentFile[]= $data;
+        $dataJSON = json_encode($currentFile);
+        
+        file_put_contents('D:\WebPages\www\challenge-php-guestbook\db\db.txt',$dataJSON);
+    }
 ```
 now its time to do fil_get_contents. we are going to place this indide the Postloader class. it will be a public function calles getPosts. after that we will let it display in the view on our page. And finally add some logic so it only displays 20 max.
 _________
@@ -169,3 +186,10 @@ the beginning:
     public function getPosts(){
     }
 ```
+adding logic to getPosts
+```php
+        $stdPosts = json_decode(file_get_contents('D:\WebPages\www\challenge-php-guestbook\db\db.txt'));
+        var_dump($stdPosts);
+
+```
+for now a simple var_dump is enough.. after this we can work on the vieuw to display 20 posts maximum with  a for loop. It'll probablu works with a <?php for ($i=0;i<20;$i++): ?> and closing <?php endfor;>. maybe it doesn't but then ill just check how many there are first and display based on that. 
