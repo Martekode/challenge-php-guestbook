@@ -218,3 +218,59 @@ some standard code to display it...
 </div>
 ```
 ![joe mama](./images/rmimg2.png)
+```php
+declare(strict_types=1);
+require './code/Post.php';
+require './code/Postloader.php';
+require './code/code.php';
+$postloaderInit = new PostLoader();
+$posts = $postloaderInit->getPosts();
+```
+i placed an init postloader to load the messages
+i will implement a check later to check if the file isn't empty.
+_______
+changed to this :
+```php
+declare(strict_types=1);
+require './code/Post.php';
+require './code/Postloader.php';
+require './code/code.php';
+$_DIR_ = 'D:\WebPages\www\challenge-php-guestbook\db\db.txt';
+if(!file_get_contents($_DIR_) == ''){
+    $postloaderInit = new PostLoader();
+    $posts = $postloaderInit->getPosts();
+}else{
+    $posts = json_decode('[{"title":"your","date":"show","message":"here","author":"posts"}]');
+}
+```
+default given if file empty and when you submit it overwrites..
+* # logic fot only displying 20 posts
+```php
+      <?php if (count($posts)< 20): ?>
+        <?php for ($i=0; $i < count($posts);$i++): ?>
+            <div class="col-sm-12 col-md-6 col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 style="color:red;" class="card-title"><?= $posts[$i]->{'title'}; ?></h5>
+                        <h6 class="card-subtitle mb-2 text-muted"><?= $posts[$i]->{'author'}; ?></h6>
+                        <h6 class="card-subtitle mb-2 text-muted"><?= $posts[$i]->{'date'}; ?></h6>
+                        <p class="card-text"><?= $posts[$i]->{'message'}; ?></p>
+                    </div>
+                </div>
+            </div>
+        <?php endfor;?>
+        <?php elseif (count($posts) > 20): ?>
+          <?php for ($i=0; $i < 20 ;$i++): ?>
+            <div class="col-sm-12 col-md-6 col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 style="color:red;" class="card-title"><?= $posts[$i]->{'title'}; ?></h5>
+                        <h6 class="card-subtitle mb-2 text-muted"><?= $posts[$i]->{'author'}; ?></h6>
+                        <h6 class="card-subtitle mb-2 text-muted"><?= $posts[$i]->{'date'}; ?></h6>
+                        <p class="card-text"><?= $posts[$i]->{'message'}; ?></p>
+                    </div>
+                </div>
+            </div>
+          <?php endfor;?>   
+      <?php endif;?> 
+```
