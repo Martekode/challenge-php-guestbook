@@ -295,4 +295,35 @@ also used htmlspecialchars
         $this->message = htmlspecialchars($message , ENT_QUOTES);
         $this->author = htmlspecialchars($author , ENT_QUOTES);
     }
+``` 
+refactured loops to display the posts newest to oldest. so from last in the array to first in the array
+```php
+      <?php if (count($posts)< 20): ?>
+        <?php for ($i=0,$z=count($posts); $i < count($posts);$i++,$z--): ?>
+            <div class="col-sm-12 col-md-6 col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 style="color:red;" class="card-title"><?= $posts[$z-1]->{'title'}; ?></h5>
+                        <h6 class="card-subtitle mb-2 text-muted"><?= $posts[$z-1]->{'author'}; ?></h6>
+                        <h6 class="card-subtitle mb-2 text-muted"><?= $posts[$z-1]->{'date'}; ?></h6>
+                        <p class="card-text"><?= $posts[$z-1]->{'message'}; ?></p>
+                    </div>
+                </div>
+            </div>
+        <?php endfor;?>
+        <?php elseif (count($posts) > 20): ?>
+          <?php for ($i=20,$z=count($posts); $i > 0 ;$i--,$z--): ?>
+            <div class="col-sm-12 col-md-6 col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 style="color:red;" class="card-title"><?= $posts[$z-1]->{'title'}; ?></h5>
+                        <h6 class="card-subtitle mb-2 text-muted"><?= $posts[$z-1]->{'author'}; ?></h6>
+                        <h6 class="card-subtitle mb-2 text-muted"><?= $posts[$z-1]->{'date'}; ?></h6>
+                        <p class="card-text"><?= $posts[$z-1]->{'message'}; ?></p>
+                    </div>
+                </div>
+            </div>
+          <?php endfor;?>   
+      <?php endif;?>  
 ```
+$z is used to get the count of the array and then take -1 cuz array. that's the last post.. then do $z-- do procedurally get the prevous post.

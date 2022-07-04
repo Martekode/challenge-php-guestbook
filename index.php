@@ -51,27 +51,27 @@ if(isset($_POST['submit'])){
 <div class="container">
     <div class="row g-2">
       <?php if (count($posts)< 20): ?>
-        <?php for ($i=0; $i < count($posts);$i++): ?>
+        <?php for ($i=0,$z=count($posts); $i < count($posts);$i++,$z--): ?>
             <div class="col-sm-12 col-md-6 col-lg-3">
                 <div class="card">
                     <div class="card-body">
-                        <h5 style="color:red;" class="card-title"><?= $posts[$i]->{'title'}; ?></h5>
-                        <h6 class="card-subtitle mb-2 text-muted"><?= $posts[$i]->{'author'}; ?></h6>
-                        <h6 class="card-subtitle mb-2 text-muted"><?= $posts[$i]->{'date'}; ?></h6>
-                        <p class="card-text"><?= $posts[$i]->{'message'}; ?></p>
+                        <h5 style="color:red;" class="card-title"><?= $posts[$z-1]->{'title'}; ?></h5>
+                        <h6 class="card-subtitle mb-2 text-muted"><?= $posts[$z-1]->{'author'}; ?></h6>
+                        <h6 class="card-subtitle mb-2 text-muted"><?= $posts[$z-1]->{'date'}; ?></h6>
+                        <p class="card-text"><?= $posts[$z-1]->{'message'}; ?></p>
                     </div>
                 </div>
             </div>
         <?php endfor;?>
         <?php elseif (count($posts) > 20): ?>
-          <?php for ($i=0; $i < 20 ;$i++): ?>
+          <?php for ($i=20,$z=count($posts); $i > 0 ;$i--,$z--): ?>
             <div class="col-sm-12 col-md-6 col-lg-3">
                 <div class="card">
                     <div class="card-body">
-                        <h5 style="color:red;" class="card-title"><?= $posts[$i]->{'title'}; ?></h5>
-                        <h6 class="card-subtitle mb-2 text-muted"><?= $posts[$i]->{'author'}; ?></h6>
-                        <h6 class="card-subtitle mb-2 text-muted"><?= $posts[$i]->{'date'}; ?></h6>
-                        <p class="card-text"><?= $posts[$i]->{'message'}; ?></p>
+                        <h5 style="color:red;" class="card-title"><?= $posts[$z-1]->{'title'}; ?></h5>
+                        <h6 class="card-subtitle mb-2 text-muted"><?= $posts[$z-1]->{'author'}; ?></h6>
+                        <h6 class="card-subtitle mb-2 text-muted"><?= $posts[$z-1]->{'date'}; ?></h6>
+                        <p class="card-text"><?= $posts[$z-1]->{'message'}; ?></p>
                     </div>
                 </div>
             </div>
