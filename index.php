@@ -50,7 +50,7 @@ if(isset($_POST['submit'])){
 </div>
 <div class="container">
     <div class="row g-2">
-      <?php if (count($posts)< 20): ?>
+      <?php if (count($posts)<= 20): ?>
         <?php for ($i=0,$z=count($posts); $i < count($posts);$i++,$z--): ?>
             <div class="col-sm-12 col-md-6 col-lg-3">
                 <div class="card">
