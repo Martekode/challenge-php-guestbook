@@ -244,7 +244,7 @@ if(!file_get_contents($_DIR_) == ''){
 }
 ```
 default given if file empty and when you submit it overwrites..
-* # logic fot only displying 20 posts
+* # logic for only displying 20 posts
 ```php
       <?php if (count($posts)< 20): ?>
         <?php for ($i=0; $i < count($posts);$i++): ?>
@@ -273,4 +273,26 @@ default given if file empty and when you submit it overwrites..
             </div>
           <?php endfor;?>   
       <?php endif;?> 
+```
+changing date to a generated date instead of input.
+```php
+function isEmpty():POST{
+    $keys=["title","name","message"];
+    foreach($keys as $key){
+        if($_POST[$key] == ''){
+            throw new Exception('empty '. $key.' input');
+        }  
+    }
+    $post = new Post($_POST['title'], date("d-m-Y") ,$_POST['message'],$_POST['name']);
+    return $post;
+}
+```
+also used htmlspecialchars
+```php
+    public function __construct($title,$date, $message, $author){
+        $this->title = htmlspecialchars($title , ENT_QUOTES);
+        $this->date = $date; 
+        $this->message = htmlspecialchars($message , ENT_QUOTES);
+        $this->author = htmlspecialchars($author , ENT_QUOTES);
+    }
 ```

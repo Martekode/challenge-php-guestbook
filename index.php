@@ -44,7 +44,6 @@ if(isset($_POST['submit'])){
     <form method="post">
         <input name="title" type="text" placeholder="title">
         <input name="name" type="text" placeholder="your name">
-        <input name="date" type="text" placeholder="Select Date"/>
         <input name="message" type="text" placeholder="type your message here">
         <button name="submit" class="btn btn-info">submit</button>
     </form>
